@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/allStyle.css">
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{header}"></div>
+<!-- Bố cục chia 2 cột -->
+<div class="content container-fluid mt-4">
+    <div class="row">
+        <!-- Cột phải -->
+        <!-- Nội dung chính -->
+        <div class=" col-md-9">
+            <h1 class="logo">Overview - Blog</h1>
+            <table class="table table-striped mt-4">
+                <thead>
+                <tr>
+                    <th th:text="${title}"></th>
+                    <th></th>
+                    <th></th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Thymeleaf Loop for blogEntries -->
+                <tr th:each="blogEntry : ${blogEntries}">
+                    <td>
+                        <a class="custom-link" th:href="@{/blog/{id}(id=${blogEntry.id})}" th:text="${blogEntry.title}"></a>
+                    </td>
+                    <td>
+                        <i class="fas fa-thumbs-up"></i> <span th:text="${blogEntry.likes}">0</span>
+                    </td>
+                    <td>
+                        <i class="fas fa-comment"></i> <span th:text="${blogEntry.comments}">0</span>
+                    </td>
+                    <td th:text="${blogEntry.publishDate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- Cột trái -->
+        <!-- Sidebar -->
+        <div class="col-md-3" th:insert="~{rightside}"></div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div th:insert="~{footer}"></div>
+</footer>
+
+</body>
+</html>

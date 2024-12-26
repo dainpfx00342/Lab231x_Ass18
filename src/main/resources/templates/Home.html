@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Fashion Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/allStyle.css">
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{header}"></div>
+<!-- Bố cục chia 2 cột -->
+<div class="content-wrapper container-fluid mt-4">
+    <div class="row">
+        <!-- Cột phải -->
+        <!-- Nội dung chính -->
+        <div class=" col-md-9">
+            <h1 class="logo">Blog</h1>
+            <div th:each="blogEntry : ${blogEntries}" class="blog-entry">
+                <div>
+                    <!-- Tiêu đề bài viết -->
+                    <h5>
+                        <i th:class="${blogEntry.iconClass}"></i>
+                        <span th:text="${blogEntry.title}"></span>
+                        <span class="float-right" th:text="${blogEntry.publishDate}"></span>
+                    </h5>
+                    <!-- Nội dung bài viết -->
+                    <div class="content-wrapper">
+                        <img class="blog-image" src="#"  alt="Image" th:src="${blogEntry.imageUrl}">
+                        <div class="blog-content"><p th:text="${blogEntry.content}"></p></div>
+                    </div>
+                    <!-- Đường kẻ -->
+                    <hr>
+                </div>
+            </div>
+            <div class="mt-3 text-center">
+                <a class="btn btn-secondary" href="/Overview">Overview</a>
+            </div>
+        </div>
+
+        <!-- Cột trái -->
+        <!-- Sidebar -->
+        <div class="col-md-3" th:insert="~{rightside}"></div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div th:insert="~{footer}"></div>
+</footer>
+
+</body>
+<script>
+    window.addEventListener("load", function () {
+        const blogEntries = document.querySelectorAll(".blog-entry");
+
+        blogEntries.forEach(entry => {
+            const image = entry.querySelector("img");
+            const contentWrapper = entry.querySelector(".content-wrapper");
+
+            // Kiểm tra nếu hình ảnh đã tải từ trước
+            if (image.complete) {
+                updateClassBasedOnAspectRatio(image, contentWrapper);
+            } else {
+                // Chờ hình ảnh tải xong
+                image.onload = () => updateClassBasedOnAspectRatio(image, contentWrapper);
+            }
+        });
+
+        // Hàm để cập nhật lớp dựa trên tỷ lệ hình ảnh
+        function updateClassBasedOnAspectRatio(image, contentWrapper) {
+            if (image.naturalWidth > image.naturalHeight) {
+                // Hình ngang
+                contentWrapper.classList.add("landscape");
+                console.log("Hình ngang: "+ image.naturalWidth + " x " + image.naturalHeight);
+            } else if (image.naturalWidth === image.naturalHeight) {
+                // Hình vuông
+                contentWrapper.classList.add("square");
+                console.log("Hình vuông: "+ image.naturalWidth + " x " + image.naturalHeight);
+            } else {
+                // Hình dọc
+                contentWrapper.classList.add("portrait");
+                console.log("Hình dọc: " + image.naturalWidth + " x " + image.naturalHeight);
+            }
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/allStyle.css">
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{header}"></div>
+<!-- Content -->
+<div class="content container-fluid mt-4">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="logo">Contact me</h2>
+      <h5> Send your message</h5>
+      <hr>
+
+      <div th:if="${error}"  class="alert alert-danger"  th:text="${error}"></div>
+      <div th:if="${mess}"   class="alert alert-success" th:text="${mess}"></div>
+    </div>
+  </div>
+
+
+    <form action="/Contact" method="post">
+      <p> Write your message here. Fill out the form:</p>
+
+      <!-- Row for Name and Email -->
+      <div class="row">
+
+        <div class="col-md-4 mb-3">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name"
+                 placeholder="Write your name here"
+                 th:value="${contact.name}"
+                 th:readonly="${readonly}"
+                 th:classappend="${readonly} ? 'bg-warning' : ''"
+                 required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email"
+                 placeholder="Write your email here"
+                 th:value="${contact.email}"
+                 th:readonly="${readonly}"
+                 th:classappend="${readonly} ? 'bg-warning' : ''"
+                 required>
+        </div>
+      </div>
+
+      <!-- Row for Message -->
+      <div class="row">
+        <div class="col-8 mb-3">
+          <label for="message">Message</label>
+          <textarea class="form-control" id="message" name="text" rows="8" placeholder="Write your message here" th:value="${contact.text}" th:readonly="${readonly}" required></textarea>
+        </div>
+
+      </div>
+      <div class="d-flex justify-content-end col-8">
+        <button type="submit" class="btn btn-danger" th:disabled="${readonly}">
+          <i class="fa" th:classappend="${readonly} ? 'fa-check-circle' : 'fa-paper-plane'"></i>
+          <span th:text="${buttonState ?: 'Send - Click here'}"></span>
+        </button>
+      </div>
+      <!-- Button at the bottom-right of Message -->
+
+    </form>
+
+  <!-- Sidebar -->
+  <div class="col-md-3" th:insert="~{rightside}"></div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+  <div th:insert="~{footer}"></div>
+</footer>
+</body>
+</html>

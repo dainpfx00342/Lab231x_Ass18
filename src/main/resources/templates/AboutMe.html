@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/allStyle.css">
+</head>
+<body>
+<!-- Header -->
+<div th:insert="~{header}"></div>
+<!-- Content -->
+<div class="content container-fluid mt-4">
+    <h2 class="logo">About me</h2>
+    <div class="row">
+        <!-- Left Column: Image -->
+        <div class="col-md-4 text-center">
+            <img src="#" th:src="${aboutMe.imageUrl}" alt="About Me" class="img-fluid rounded">
+        </div>
+        <!-- Right Column: Information -->
+        <div class="col-md-4">
+            <p><strong>Name:</strong> <span th:text="${aboutMe.name}"></span></p>
+            <p><strong>Age:</strong> <span th:text="${aboutMe.age}">25</span></p>
+            <p th:text="${aboutMe.description}">
+
+            </p>
+            <p th:text="${aboutMe.hobby}">
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar -->
+<div class="col-md-3" th:insert="~{rightside}"></div>
+<!-- Footer -->
+<footer>
+    <div th:insert="~{footer}"></div>
+</footer>
+</body>
+</html>

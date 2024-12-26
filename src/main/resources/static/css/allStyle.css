@@ -1,0 +1,82 @@
+html,body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo{
+    font-family: "Snell Roundhand", cursive;
+    font-size: 50px;
+}
+
+.content-wrapper {
+   width: 100%;
+   gap: 20px; /* Khoảng cách giữa sidebar và nội dung chính */
+   flex:1;
+}
+
+.main-content {
+
+}
+
+.sidebar {
+    position: fixed; /* Cố định vị trí */
+    top: 220px; /* Khoảng cách từ cạnh trên */
+    right: 20px; /* Khoảng cách từ cạnh phải */
+    width: 250px; /* Chiều rộng sidebar */
+    background-color: #f8f9fa; /* Màu nền */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+    border-radius: 8px; /* Bo góc */
+    z-index: 1000; /* Đảm bảo luôn hiển thị trên nội dung khác */
+}
+footer{
+    margin-top: auto;
+    height: 100px;
+}
+.custom-link{
+    color:black;
+    text-decoration: underline;
+}
+
+
+/* Bố cục chung */
+.content-wrapper {
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa hình ảnh và nội dung */
+    margin-bottom: 20px;
+}
+
+.blog-image {
+    max-width: 100%;
+    height: auto; /* Tự động giữ tỷ lệ hình ảnh */
+    border-radius: 8px; /* Bo góc hình ảnh */
+}
+
+/* Bố cục mặc định (hình dọc: hình bên trái, nội dung bên phải) */
+.content-wrapper {
+    display: flex;
+    align-items: flex-start; /* Căn chỉnh theo cạnh trên */
+}
+
+/* Hình ngang: Hình ở trên, nội dung ở dưới */
+.content-wrapper.landscape {
+    flex-direction: column; /* Bố cục hàng ngang */
+    align-items: flex-start; /* Căn giữa hình ảnh */
+}
+.content-wrapper.portrait {
+    flex-direction: row; /* Bố cục hàng dọc */
+    align-items: flex-start; /* Căn chỉnh theo cạnh trên */
+}
+.content-wrapper.square{
+    flex-direction: column !important; /* Bố cục hàng ngang */
+    align-items: flex-start; /* Căn giữa hình ảnh */
+}
+
+.blog-content {
+    flex: 1; /* Nội dung chiếm toàn bộ không gian còn lại */
+    text-align: justify; /* Căn chỉnh nội dung */
+}
+.bg-warning{
+    background-color: lightgoldenrodyellow !important;
+}

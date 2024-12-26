@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Fashion Blog</title>
+
+</head>
+<body>
+<div class="header">
+    <!-- Header Section -->
+    <div class="bg-light d-flex flex-column justify-center align-item-center p-3" style="height: 150px">
+        <p class="logo">My Fashion Blog</p>
+        <p class="text-danger">Welcome to this website</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger text-white">
+        <div class="navbar-nav">
+           <!--/*@thymesVar id="currentURI" type=""*/-->
+           <a  class="nav-item nav-link text-white"
+               href="/Home"
+               th:classappend="${currentURI == '/Home' ? 'font-weight-bold' : ''}">
+               My Fashion Blog
+           </a>
+           <a  class="nav-item nav-link text-white"
+               href="/AboutMe"
+               th:classappend="${currentURI == '/AboutMe' ? 'font-weight-bold' : ''}">
+               About me</a>
+           <a  class="nav-item nav-link text-white"
+               href="/Contact"
+               th:classappend="${currentURI == '/Contact' ? 'font-weight-bold' : ''}">
+               Contact</a>
+        </div>
+    </nav>
+
+</div>
+</body>
+</html>
